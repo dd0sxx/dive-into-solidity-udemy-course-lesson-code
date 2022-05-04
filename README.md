@@ -2,4 +2,4 @@
 
 ## Links by lesson
 ### Pre-Requisite
-- Macro Engineering Fellowship Pre-coursehttps://0xmacro.notion.site/Welcome-to-Macro-Engineering-Fellowship-Pre-course-65d29f4193ba4461bf5ff30441c3a9a3
+- Teach Yourself Web3 (AKA Macro Engineering Fellowship Pre-course): https://www.teachyourselfweb3.com/courses/teach-yourself-web3
