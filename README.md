@@ -6,3 +6,6 @@
 
 ### The Structure of a Smart Contract
 - https://docs.soliditylang.org/en/v0.8.13/080-breaking-changes.html
+
+### Solidity Basic Syntax Rules
+- https://docs.soliditylang.org/en/v0.8.13/natspec-format.html
