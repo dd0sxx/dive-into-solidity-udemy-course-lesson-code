@@ -9,7 +9,7 @@ contract Space {
 
     ///@notice we use the constant keyword
     ///@dev best practices are to name constant variables in all caps with underscores
-    string public constant TYPE = "outer";
+    string public constant LOCATION = "outer";
 
     ///@dev this is not permitted in Solidity:
     // price = 100;
