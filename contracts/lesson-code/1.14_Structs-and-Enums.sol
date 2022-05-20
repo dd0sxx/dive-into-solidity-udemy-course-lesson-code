@@ -24,13 +24,16 @@ contract Universe {
     }
 
     function changePlanet(uint _age, string memory _name, address _addr) public {
-        ///@notice syntax for creating a new struct
-        Planet memory newPlanet = Planet({
-            age: _age,
-            name: _name,
-            addr: _addr
-        });
-        universePlanet = newPlanet;
+        ///@notice enum conditional statement
+        if(universeState == State.Inhabited) {
+            ///@notice syntax for creating a new struct
+            Planet memory newPlanet = Planet({
+                age: _age,
+                name: _name,
+                addr: _addr
+            });
+            universePlanet = newPlanet;
+        }
     }
     
 }
