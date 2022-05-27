@@ -12,7 +12,7 @@ contract Deposit {
     address public owner;
 
     constructor () {
-        owner = msg.sender
+        owner = msg.sender;
     }
 
     receive () external payable {
@@ -25,21 +25,5 @@ contract Deposit {
 
     function getBalance () public view returns (uint) {
         return address(this).balance;
-    }
-
-    function sendEther (address payable destination, uint amount) public onlyOwner returns (bool) {
-        ///@dev returns false on failure
-        bool res = destination.send(amount);
-        return res;
-    }
-
-    function transferEther (address payable destination, uint amount) onlyOwner public {
-        ///@dev reverts on failure
-        destination.transfer(amount);
-    }
-
-    function callEther (address payable destination, uint amount) onlyOwner public {
-        ///@dev note, this call is dangerous and allows for reentrancy
-        destination.call{value: amount}("");
     }
 }
