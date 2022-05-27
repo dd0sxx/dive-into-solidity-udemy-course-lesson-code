@@ -5,7 +5,7 @@ pragma solidity ^0.8.13;
 contract Deposit {
 
     modifier onlyOwner {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "not owner");
         _; 
     }
 
@@ -28,21 +28,22 @@ contract Deposit {
     }
 
     function sendEther (address payable destination, uint amount) public onlyOwner returns (bool) {
-        require(amount <= address(this).balance)
+        require(amount <= address(this).balance);
         ///@dev returns false on failure
         bool res = destination.send(amount);
         return res;
     }
 
     function transferEther (address payable destination, uint amount) onlyOwner public {
-        require(amount <= address(this).balance)
+        require(amount <= address(this).balance);
         ///@dev reverts on failure
         destination.transfer(amount);
     }
 
-    function callEther (address payable destination, uint amount) onlyOwner public {
-        require(amount <= address(this).balance)
+    function callEther (address payable destination, uint amount) onlyOwner public returns (bool, bytes memory) {
+        require(amount <= address(this).balance);
         ///@dev this call is dangerous and allows for reentrancy
-        destination.call{value: amount}("");
+        (bool success, bytes memory returnBytes) = destination.call{value: amount}("");
+        (success, returnBytes);
     }
 }
