@@ -31,5 +31,10 @@ contract B is A {
     int public xx = f3();
     // int public yy = f1(); f1 is private and cannot be called from derived contracts
     int public yy = f2(); // this works since f2 is public, and can access f1 from within the A contract
-    // int public xy = f4(); this will fail since f4 is external, and cannot be called within the contract it is defined in or any inheriting contracts
+    // int public xy = f4(); this won't compile since f4 is external, and cannot be called within the contract it is defined in or any inheriting contracts
+}
+
+contract C {
+    A public contract_a = new A(); //defining new instance of A by deploying a new contract A
+    int public xy = contract_a.f4(); //this compiles since contract C is external to contract A
 }
