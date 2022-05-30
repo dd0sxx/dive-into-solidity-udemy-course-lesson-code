@@ -15,7 +15,8 @@ contract Space {
     // price = 100;
 
     function setPrice (uint256 _price) public {
-        price = _price;
+        ///@dev will trigger a SSTORE opcode
+        price = _price; 
     }
 
 }
