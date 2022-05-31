@@ -9,8 +9,9 @@ contract Space {
     string public constant LOCATION = "outer";
 
     ///@dev setPrice is a setter function. Notice how it changes the value of the price variable when it is invoked
-    function setPrice (uint256 _price) public {
+    function setPrice (uint256 _price) public returns (uint, bool) {
         price = _price;
+        return (_price, true);
     }
 
 }
