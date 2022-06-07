@@ -7,7 +7,9 @@ contract KnowledgeTest {
     address[] public players;
     address public owner;
 
-    receive() external payable {}
+    constructor() {
+        owner = msg.sender;
+    }
 
     function getBalance() public view returns (uint256) {
         return address(this).balance;
@@ -36,7 +38,5 @@ contract KnowledgeTest {
         t[0] = "VET";
     }
 
-    constructor() {
-        owner = msg.sender;
-    }
+    receive() external payable {}
 }

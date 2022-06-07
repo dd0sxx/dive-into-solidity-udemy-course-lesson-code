@@ -5,16 +5,21 @@ pragma solidity ^0.8.13;
 contract GlobalVariables {
 
     address public owner;
-    uint public thisMoment = block.timestamp;
-    uint public blockNumber = block.number;
-    uint public difficulty = block.difficulty;
-    uint public gasLimit = block.gaslimit;
+    uint public thisMoment;
+    uint public blockNumber;
+    uint public difficulty;
+    uint public gasLimit;
     
     constructor() {
         owner = msg.sender;
+        thisMoment = block.timestamp;
+        blockNumber = block.number;
+        difficulty = block.difficulty;
+        gasLimit = block.gaslimit;
     }
 
     function changeOwner () public {
+        require (msg.sender == owner, "not owner");
         owner = msg.sender;
     }
 

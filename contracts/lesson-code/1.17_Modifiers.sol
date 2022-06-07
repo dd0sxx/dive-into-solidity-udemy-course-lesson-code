@@ -21,8 +21,8 @@ contract GlobalVariables {
         owner = msg.sender;
     }
 
-    function changeOwner () public onlyOwner {
-        owner = msg.sender;
+    function changeOwner (address newOwner) public onlyOwner {
+        owner = newOwner;
     }
 
     function getBalance () public view returns (uint) {
