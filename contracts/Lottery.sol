@@ -30,22 +30,6 @@ contract Lottery {
         return address(this).balance;
     }
 
-    // helper function that returns a big random integer
-    // UNSAFE! Don't trust random numbers generated on-chain, they can be exploited! This method is used here for simplicity
-    // See: https://solidity-by-example.org/hacks/randomness
-    function random() internal view returns (uint256) {
-        return
-            uint256(
-                keccak256(
-                    abi.encodePacked(
-                        block.difficulty,
-                        block.timestamp,
-                        players.length
-                    )
-                )
-            );
-    }
-
     // selecting the winner
     function pickWinner() public {
         // only the owner can pick a winner if there are at least 3 players in the lottery
@@ -61,11 +45,28 @@ contract Lottery {
         winner = players[index]; // this is the winner
         gameWinners.push(winner);
 
+        // resetting the lottery for the next round
+        delete players;
+        
         // transferring the entire contract's balance to the winner
         (bool success, ) = winner.call{value: getBalance()}("");
         require(success, "TRANSFER_FAILED");
 
-        // resetting the lottery for the next round
-        delete players;
+    }
+
+    // helper function that returns a big random integer
+    // UNSAFE! Don't trust random numbers generated on-chain, they can be exploited! This method is used here for simplicity
+    // See: https://solidity-by-example.org/hacks/randomness
+    function random() internal view returns (uint256) {
+        return
+            uint256(
+                keccak256(
+                    abi.encodePacked(
+                        block.difficulty,
+                        block.timestamp,
+                        players.length
+                    )
+                )
+            );
     }
 }
